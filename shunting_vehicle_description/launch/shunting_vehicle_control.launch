@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"
+    output="screen" />
+
+  <node pkg="robot_state_publisher" name="robot_state_publisher"
+    type="robot_state_publisher" respawn="false" output="screen"
+  />
+
+  <node name="rviz" pkg="rviz" type="rviz"
+    args="-d $(find shunting_vehicle_description)/rviz_config/urdf_visu.rviz" />
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find shunting_vehicle_description)/config/shunting_vehicle_control.yaml"
+    command="load" />
+
+  <!-- load the controllers -->
+  <node pkg="controller_manager" name="controller_spawner"
+    type="spawner" respawn="false" output="screen" ns="/shunting_vehicle"
+    args="front_left_wheel_velocity_controller
+  front_right_wheel_velocity_controller
+  rear_left_wheel_velocity_controller
+  rear_right_wheel_velocity_controller
+  front_axle_position_controller
+  rear_axle_position_controller
+  joint_state_controller" />
+</launch>

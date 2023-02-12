@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--spawns the MY_ROBOT URDF file into the given point in space, -->
+<!--if a gazebo simulation is running.-->
+<launch>
+   <include file="$(find shunting_vehicle_description)/launch/spawn_urdf.launch">
+       <arg name="x" value="6.0"/>
+       <arg name="y" value="0.0"/>
+       <arg name="z" value="1.5"/>
+       <arg name="yaw" value="0.0"/>
+
+       <!-- Select the description regarding the LiDAR you want to use -->
+
+       <!-- <arg name="urdf_robot_file" value="$(find shunting_vehicle_description)/urdf/shunting_vehicle_LMS111.urdf"/> -->
+       <arg name="urdf_robot_file" value="$(find shunting_vehicle_description)/urdf/shunting_vehicle_TIM571.urdf"/>
+
+       <arg name="robot_name" value="shunting_vehicle"/>
+   </include>
+</launch>

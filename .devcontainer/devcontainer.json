@@ -41,6 +41,7 @@
       "ms-python.python",
       "ms-vscode.cpptools-extension-pack",
       "ms-vscode.cpptools",
+      "redhat.vscode-xml",
       "redhat.vscode-yaml",
       "smilerobotics.urdf",
       "streetsidesoftware.code-spell-checker",

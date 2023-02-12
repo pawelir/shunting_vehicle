@@ -1,0 +1,54 @@
+{
+    "name": "shunting_vehicle",
+  
+    "build": {
+      "dockerfile": "Dockerfile",
+      "context": "${localWorkspaceFolder}",
+      "args": {
+        // CONFIGURE: Name(s) of the package(s) under development.
+        "PKG_NAME": "shunting_vehicle_description",
+        // CONFIGURE: The Docker image to be used for Dev Container creation.
+        "DOCKER_IMG": "ros:noetic",
+        "USERNAME": "pawelir_user"
+      }
+    },
+  
+    "runArgs": [
+      "--name=shunting_vehicle_devcontainer",
+      "--privileged",
+      "--network=host",
+      "--ipc=host",
+      "--runtime=nvidia",
+      "--env=DISPLAY=${localEnv:DISPLAY}",
+      "--env=NVIDIA_DRIVER_CAPABILITIES=all",
+      "--env=NVIDIA_VISIBLE_DEVICES=all",
+      "--env=ROS_DOMAIN_ID=1",
+      "--volume=/dev:/dev",
+      "--volume=/run/udev/control:/run/udev/control",
+      "--volume=/tmp/.X11-unix:/tmp/.X11-unix"
+    ],
+  
+    "workspaceFolder": "/home/pawelir_user/ros_ws/src",
+    "workspaceMount": "src=${localWorkspaceFolder},dst=/home/pawelir_user/ros_ws/src,type=bind",
+  
+    "extensions": [
+      "aaron-bond.better-comments",
+      "cschlosser.doxdocgen",
+      "eamodio.gitlens",
+      "ms-azuretools.vscode-docker",
+      "ms-iot.vscode-ros",
+      "ms-python.black-formatter",
+      "ms-python.python",
+      "ms-vscode.cpptools-extension-pack",
+      "ms-vscode.cpptools",
+      "redhat.vscode-yaml",
+      "smilerobotics.urdf",
+      "streetsidesoftware.code-spell-checker",
+      "twxs.cmake",
+      "xaver.clang-format",
+      "yzhang.markdown-all-in-one"
+    ],
+  
+    "remoteUser": "pawelir_user",
+    "postCreateCommand": "cd /home/$(whoami)/ros_ws && catkin_make --pkg $PKG_NAME"
+  }
